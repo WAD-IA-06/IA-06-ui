@@ -1,16 +1,38 @@
-# React + Vite
+# 🚀 Hướng dẫn cài đặt và chạy Frontend (ReactJS)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Đảm bảo đã cài đặt các phần mềm sau trên máy:
 
-Currently, two official plugins are available:
+- **Node.js** phiên bản 14 trở lên ([Tải tại đây](https://nodejs.org/))
+- **npm** hoặc **yarn** (đi kèm với Node.js)
+- **Git** ([Tải tại đây](https://git-scm.com/))
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Hướng dẫn cài đặt
 
-## React Compiler
+### Bước 1: Clone project về máy
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+git clone https://github.com/WAD-IA-06/IA-06-ui.git
+cd IA-06-UI
+```
 
-## Expanding the ESLint configuration
+### Bước 2: Cài đặt các package cần thiết
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Mở terminal trong thư mục root của project và chạy:
+
+```bash
+npm install
+```
+Lệnh này sẽ cài đặt tất cả các dependencies cần thiết cho project (React, React Router, Axios, v.v.).
+
+### Bước 3: Chạy ứng dụng
+
+Khởi động development server:
+
+```bash
+npm run dev
+```
+
+✅ Nếu mọi thứ thành công:
+- Trình duyệt sẽ tự động mở tại `http://localhost:5173`
+- Bạn sẽ thấy giao diện ứng dụng React
+- Mọi thay đổi trong code sẽ tự động reload (Hot Reload)

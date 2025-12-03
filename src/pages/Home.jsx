@@ -13,38 +13,38 @@ export default function Home({ isLoggedIn, setIsLoggedIn }) {
             <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">
               MyApp
             </Link>
-            
+
             <div className="flex gap-4">
               {!isLoggedIn ?
-              <div>
-                <Link 
-                  to="/login" 
-                  className="px-4 py-2 text-gray-300 hover:text-primary-400 transition-colors"
+                <div>
+                  <Link
+                    to="/login"
+                    className="px-4 py-2 text-gray-300 hover:text-primary-400 transition-colors"
+                  >
+                    Log In
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="px-4 py-2 bg-primary-500 hover:bg-primary-600 rounded-lg text-black"
+                  >
+                    Sign Up
+                  </Link>
+                </div> :
+                <Link
+                  to="/"
+                  className="px-4 py-2 bg-primary-500 hover:bg-primary-600 rounded-lg transition-colors text-black"
+                  onClick={handleLogout}
                 >
-                  Đăng nhập
+                  Log Out
                 </Link>
-                <Link 
-                  to="/register" 
-                  className="px-4 py-2 bg-primary-500 hover:bg-primary-600 rounded-lg text-black"
-                >
-                  Đăng ký
-                </Link>
-              </div> :
-              <Link 
-                to="/" 
-                className="px-4 py-2 bg-primary-500 hover:bg-primary-600 rounded-lg transition-colors text-black"
-                onClick = {handleLogout}
-              >
-                Đăng xuất
-              </Link>
-  }
+              }
             </div>
           </div>
         </div>
       </nav>
 
       {/* Content */}
-      <div className="flex items-center justify-center" style={{height: 'calc(100vh - 64px)'}}>
+      <div className="flex items-center justify-center" style={{ height: 'calc(100vh - 64px)' }}>
         <div className="text-center">
           <h1 className="text-6xl font-bold bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent mb-4">
             Hello World

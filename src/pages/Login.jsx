@@ -47,16 +47,16 @@ export default function Login({ setIsLoggedIn }) {
             <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">
               MyApp
             </Link>
-            
+
             <div className="flex gap-4">
-              <Link 
-                to="/login" 
+              <Link
+                to="/login"
                 className="px-4 py-2 text-gray-300 hover:text-primary-400 transition-colors"
               >
                 Login
               </Link>
-              <Link 
-                to="/register" 
+              <Link
+                to="/register"
                 className="px-4 py-2 bg-primary-500 hover:bg-primary-600 rounded-lg transition-colors"
               >
                 Sign Up
@@ -67,7 +67,7 @@ export default function Login({ setIsLoggedIn }) {
       </nav>
 
       {/* Login Form */}
-      <div className="flex items-center justify-center px-4 py-12" style={{minHeight: 'calc(100vh - 64px)'}}>
+      <div className="flex items-center justify-center px-4 py-12" style={{ minHeight: 'calc(100vh - 64px)' }}>
         <div className="bg-gray-900 border border-gray-800 rounded-xl shadow-2xl w-full max-w-md p-8">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">
@@ -85,11 +85,10 @@ export default function Login({ setIsLoggedIn }) {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className={`w-full px-4 py-3 bg-gray-900 border rounded-lg focus:outline-none focus:ring-2 transition-all ${
-                  errors.email 
-                    ? 'border-red-500 focus:ring-red-500' 
+                className={`w-full px-4 py-3 bg-gray-900 border rounded-lg focus:outline-none focus:ring-2 transition-all ${errors.email
+                    ? 'border-red-500 focus:ring-red-500'
                     : 'border-gray-700 focus:border-primary-500 focus:ring-primary-500/50'
-                }`}
+                  }`}
                 {...register('email', {
                   required: 'Email is required',
                   pattern: {
@@ -111,11 +110,10 @@ export default function Login({ setIsLoggedIn }) {
               <input
                 type="password"
                 placeholder="Enter your password"
-                className={`w-full px-4 py-3 bg-gray-900 border rounded-lg focus:outline-none focus:ring-2 transition-all ${
-                  errors.password 
-                    ? 'border-red-500 focus:ring-red-500' 
+                className={`w-full px-4 py-3 bg-gray-900 border rounded-lg focus:outline-none focus:ring-2 transition-all ${errors.password
+                    ? 'border-red-500 focus:ring-red-500'
                     : 'border-gray-700 focus:border-primary-500 focus:ring-primary-500/50'
-                }`}
+                  }`}
                 {...register('password', {
                   required: 'Password is required',
                   minLength: {
