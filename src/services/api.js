@@ -1,37 +1,50 @@
-const API_URL = 'http://localhost:3000';
+import axios from "axios";
 
-export const authAPI = {
-  register: async (data) => {
-    const response = await fetch(`${API_URL}/user/register`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
+const api = axios.create({
+    baseURL: "http://localhost:3000",
+    withCredentials: true,
+});
 
-    const result = await response.json();
+let accessToken = null; 
+export const getAccessToken = () => accessToken;
+export const setAccessToken = (token) => (accessToken = token);
 
-    if (!response.ok) {
-      throw new Error(result.message || 'Registration failed');
+api.interceptors.request.use((config) => {
+    if (accessToken) {
+        config.headers.Authorization = `Bearer ${accessToken}`;
     }
+    return config;
+});
 
-    return result;
-  },
-  login: async (data) => {
-    const response = await fetch(`${API_URL}/user/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-    const result = await response.json();
+api.interceptors.response.use(
+    (res) => res,
+    async (err) => {
+        const originalRequest = err.config;
 
-    if (!response.ok) {
-      throw new Error(result.message || 'Login failed');
+        if (err.response?.status === 401 && !originalRequest.__retry) {
+            originalRequest.__retry = true;
+
+            try {
+                const refreshRes = await axios.post(
+                    "http://localhost:3000/user/refresh-token",
+                    { refreshToken: localStorage.getItem("refreshToken") },
+                    { withCredentials: true }
+                );
+
+                const newAccess = refreshRes.data.accessToken;
+                setAccessToken(newAccess);
+
+                originalRequest.headers.Authorization = `Bearer ${newAccess}`;
+                return api(originalRequest);
+            } catch (error) {
+                console.log("Refresh token expired. Logging out.");
+                localStorage.removeItem("refreshToken");
+                window.location.href = "/login";
+            }
+        }
+
+        return Promise.reject(err);
     }
+);
 
-    return result;
-  }
-};
+export default api;

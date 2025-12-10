@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { authAPI } from '../services/api';
+import { authAPI } from '../services/authAPI';
 
 export default function Login({ setIsLoggedIn }) {
   const navigate = useNavigate();
@@ -32,7 +32,14 @@ export default function Login({ setIsLoggedIn }) {
       setIsLoggedIn(true);
 
     } catch (error) {
-      setApiError(error.message || 'Login failed. Please try again.');
+      const msg =
+        error.response?.data?.message ||
+        error.response?.data?.error ||
+        error.message ||
+        'Login failed.';
+
+      setApiError(msg);
+
     } finally {
       setIsLoading(false);
     }
@@ -86,8 +93,8 @@ export default function Login({ setIsLoggedIn }) {
                 type="email"
                 placeholder="Enter your email"
                 className={`w-full px-4 py-3 bg-gray-900 border rounded-lg focus:outline-none focus:ring-2 transition-all ${errors.email
-                    ? 'border-red-500 focus:ring-red-500'
-                    : 'border-gray-700 focus:border-primary-500 focus:ring-primary-500/50'
+                  ? 'border-red-500 focus:ring-red-500'
+                  : 'border-gray-700 focus:border-primary-500 focus:ring-primary-500/50'
                   }`}
                 {...register('email', {
                   required: 'Email is required',
@@ -111,8 +118,8 @@ export default function Login({ setIsLoggedIn }) {
                 type="password"
                 placeholder="Enter your password"
                 className={`w-full px-4 py-3 bg-gray-900 border rounded-lg focus:outline-none focus:ring-2 transition-all ${errors.password
-                    ? 'border-red-500 focus:ring-red-500'
-                    : 'border-gray-700 focus:border-primary-500 focus:ring-primary-500/50'
+                  ? 'border-red-500 focus:ring-red-500'
+                  : 'border-gray-700 focus:border-primary-500 focus:ring-primary-500/50'
                   }`}
                 {...register('password', {
                   required: 'Password is required',
